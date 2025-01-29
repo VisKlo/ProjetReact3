@@ -2,10 +2,12 @@ import { useSerieDb } from "@hooks/queries";
 import { useState } from "react";
 import { Button } from "@atoms/Button";
 import { Link } from "react-router-dom";
+import { useFavoritesSerieStore } from "@store/useFavSeries";
 
 export function Series() {
-    const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const { data, isLoading, isError, error, refetch } = useSerieDb(page);
+  const { addFavSerie } = useFavoritesSerieStore();
 
   if (isLoading) {
     // On peut afficher un skeleton ou juste "Chargement..."
@@ -26,7 +28,7 @@ export function Series() {
             <Link to={`/serie/${serieDb.id}`}>
                 <img src={`https://image.tmdb.org/t/p/w300${serieDb.poster_path}`} alt={serieDb.title} />
             </Link>
-            <Button label="Favori" className="FavButton" />
+            <Button label="Favori" className="FavButton" onClick={() => addFavSerie(serieDb)} />
           </li>
         ))}
       </ul>
