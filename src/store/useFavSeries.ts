@@ -8,24 +8,14 @@ interface FavSerie {
 }
 
 export const useFavoritesSerieStore = create<FavSerie>((set, get) => ({
-  favoritesSerie: (() => {
-    try {
-      const storedFavorites = localStorage.getItem("favoritesSerie");
-      return storedFavorites ? JSON.parse(storedFavorites) : [];
-    } catch (error) {
-      console.error("Erreur lors de la récupération des favoris", error);
-      return [];
-    }
-  })(),
+  favoritesSerie: [],
 
   // Ajouter un Serie
-  addFavSerie: (Serie) =>
+  addFavSerie: (serie) =>
     set((state) => {
       const updatedFavorites = [...state.favoritesSerie]; // stocke tout les Serie favoirs
-      
-      if (!updatedFavorites.some((fav) => fav.id === Serie.id)) { // verifie si le Serie est deja en favori
-        updatedFavorites.push(Serie);
-        localStorage.setItem("favoritesSerie", JSON.stringify(updatedFavorites));
+      if (!updatedFavorites.some((fav) => fav.id === serie.id)) { // verifie si le Serie est deja en favori
+        updatedFavorites.push(serie);
       }
       return { favoritesSerie: updatedFavorites };
     }),
@@ -34,7 +24,6 @@ export const useFavoritesSerieStore = create<FavSerie>((set, get) => ({
   removeFavSerie: (id) =>
     set((state) => {
       const updatedFavorites = state.favoritesSerie.filter((fav) => fav.id !== id);
-      localStorage.setItem("favoritesSerie", JSON.stringify(updatedFavorites));
       return { favoritesSerie: updatedFavorites };
     }),
   

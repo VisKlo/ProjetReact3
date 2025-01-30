@@ -1,16 +1,29 @@
-import { useMovieDb } from "@hooks/queries";
+import { useMovieDb, useSearchMovies } from "@hooks/queries";
 import { useState } from "react";
 import { Button } from "@atoms/Button";
-import { Link } from "react-router-dom";
-import { useFavoritesFilmsStore } from "@store/useFavFilms";
+import { useEffect } from "react";
+import { MovieCard } from "@molecules/MovieCard/MovieCard";
+import { SearchBar } from "@molecules/SearchBar/SearchBar";
 
 export function Films() {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isError, error, refetch } = useMovieDb(page);
-  const { addFavFilm } = useFavoritesFilmsStore();
+  const [query, setQuery] = useState("");
+  const { data: defaultMovies, isLoading, isError, error, refetch } = useMovieDb(page);
+  const { data: searchResults, isLoading: isSearching } = useSearchMovies(query);
 
-  if (isLoading) {
-    // On peut afficher un skeleton ou juste "Chargement..."
+  const moviesToDisplay = query ? searchResults : defaultMovies;
+
+  useEffect(() => {
+    if (query === "") {
+      refetch();
+    } 
+  }, [query, refetch]);
+
+  const handleSearch = (searchQuery: string) => {
+    setQuery(searchQuery);
+  };
+
+  if (isLoading || isSearching) {
     return <div>Chargement...</div>;
   }
 
@@ -18,22 +31,20 @@ export function Films() {
     return <div>Erreur: {String(error)}</div>;
   }
 
+  
+
   return (
     <div>
       <h2>Listes de films</h2>
-      <button onClick={() => refetch()}>Rafraîchir</button>
+      <SearchBar onSearch={handleSearch} />
+      <Button label="Rafraichir" className="refreshbutton" onClick={() => {setQuery(""); refetch()}} />
       <ul>
-        {data?.map((movieDb: any) => (
-          <li key={movieDb.id}>
-            <Link to={`/film/${movieDb.id}`}>
-                <img src={`https://image.tmdb.org/t/p/w300${movieDb.poster_path}`} alt={movieDb.title} />
-            </Link>
-            <Button label="Favori" className="FavButton" onClick={() => addFavFilm(movieDb)} />
-          </li>
+        {moviesToDisplay?.map((movie: any) => (
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </ul>
-        <Button label="Précédent" className="pagebutton" onClick={() => setPage(page-1)} disabled={ page === 1 }/>
-        <Button label="Suivant" className="pagebutton" onClick={() => setPage(page+1)}/>
+      <Button label="Précédent" className="pagebutton" onClick={() => setPage(page - 1)} disabled={page === 1} />
+      <Button label="Suivant" className="pagebutton" onClick={() => setPage(page + 1)} />
     </div>
   );
 }

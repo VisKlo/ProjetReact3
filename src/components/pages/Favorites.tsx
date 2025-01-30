@@ -1,14 +1,14 @@
 import { useFavoritesFilmsStore } from "@store/useFavFilms";
 import { useFavoritesSerieStore } from "@store/useFavSeries";
 import { Button } from "@atoms/Button";
+import { Link } from "react-router-dom";
 
 export function Favorites() {
     const { favoritesFilm, removeFavFilm } = useFavoritesFilmsStore();
     const { favoritesSerie, removeFavSerie } = useFavoritesSerieStore();
-    console.log(favoritesFilm)
 
     return (
-        <>
+        <main>
             <div>
                 <h2>Mes films favoris</h2>
                 { favoritesFilm.length === 0 ? (
@@ -17,7 +17,9 @@ export function Favorites() {
                     <ul>
                         { favoritesFilm.map((film: any) => (
                             <li key={film.id}>
-                                { film.title }
+                                <Link to={`/serie/${film.id}`}>
+                                    { film.title }
+                                </Link>
                                 <Button label="Retirer" className="favbutton" onClick={() => removeFavFilm(film.id)}/>
                             </li>
                         ))}
@@ -32,13 +34,15 @@ export function Favorites() {
                     <ul>
                         { favoritesSerie.map((serie: any) => (
                             <li key={serie.id}>
-                                { serie.name }
+                                <Link to={`/serie/${serie.id}`}>
+                                    { serie.name }
+                                </Link>
                                 <Button label="Retirer" className="favbutton" onClick={() => removeFavSerie(serie.id)}/>
                             </li>
                         ))}
                     </ul>
                 )}
             </div>
-        </>
+        </main>
     )
 }
