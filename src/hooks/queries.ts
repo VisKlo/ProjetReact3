@@ -1,13 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchMovieDb } from "@api/MovieDbApi";
-import { fetchSerieDb } from "@api/MovieDbApi";
-import { searchMovies } from "@api/MovieDbApi";
+import { fetchMovieDb, fetchSerieDb, searchMovies, searchSeries, fetchMovieDetail, fetchSerieDetail } from "@api/MovieDbApi";
 
 export function useMovieDb(page: number) {
     return useQuery({
         queryKey: ["movies", page],
         queryFn: () => fetchMovieDb(page)
     });
+};
+
+export const useSearchMovies = (query: string) => {
+    return useQuery({
+      queryKey: ["searchMovies", query],
+      queryFn: () => searchMovies(query),
+    });
+};
+
+export const useDetailMovie = (id: number) => {
+    return useQuery({
+        queryKey: ["detailMovie", id],
+        queryFn: () => fetchMovieDetail(id)
+    })
 };
 
 export function useSerieDb(page: number) {
@@ -17,9 +29,16 @@ export function useSerieDb(page: number) {
     });
 };
 
-export const useSearchMovies = (query: string) => {
+export const useSearchSeries = (query: string) => {
     return useQuery({
-      queryKey: ["searchMovies", query],
-      queryFn: () => searchMovies(query),
+      queryKey: ["searchSeries", query],
+      queryFn: () => searchSeries(query),
     });
-  };
+};
+
+export const useDetailSerie = (id: number) => {
+    return useQuery({
+        queryKey: ["detailSerie", id],
+        queryFn: () => fetchSerieDetail(id)
+    })
+};

@@ -4,9 +4,9 @@ import { Button } from "@atoms/Button";
 import { useFavoritesFilmsStore } from "@store/useFavFilms";
 import { useDeleteMovie } from "@hooks/mutation";
 
-export const MovieCard: React.FC<IMovieProps> = ({ movie }) => {
+export const MovieCard: React.FC<IMovieProps> = ({ movie, page }) => {
     const { addFavFilm } = useFavoritesFilmsStore();
-    const { mutate: deleteMutate } = useDeleteMovie();
+    const { mutate: deleteMutate } = useDeleteMovie(page);
   
     return (
       <li key={movie.id}>

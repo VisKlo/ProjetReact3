@@ -16,6 +16,11 @@ export const searchMovies = async (query: string) => {
     return response.data.results;
 }
 
+export const fetchMovieDetail = async (id: number) => {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=fr`);
+    return response.data;
+}
+
 
 export const fetchSerieDb = async (page: number) => {
     const response = await axios.get(`https://api.themoviedb.org/3/tv/top_rated?api_key=${token}&language=fr&page=${page}`);
@@ -27,3 +32,12 @@ export const deleteSerie = async (id: number) => {
     return response.data.results;
 }
 
+export const searchSeries = async (query: string) => {
+    const response = await axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${token}&query=${query}&language=fr`);
+    return response.data.results;
+}
+
+export const fetchSerieDetail = async (id: number) => {
+    const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${token}&language=fr`);
+    return response.data;
+}

@@ -4,9 +4,9 @@ import { Button } from "@atoms/Button";
 import { useFavoritesSerieStore } from "@store/useFavSeries";
 import { useDeleteSerie } from "@hooks/mutation";
 
-export const SerieCard: React.FC<ISerieProps> = ({ serie }) => {
+export const SerieCard: React.FC<ISerieProps> = ({ serie, page }) => {
     const { addFavSerie } = useFavoritesSerieStore();
-    const { mutate: deleteMutate } = useDeleteSerie();
+    const { mutate: deleteMutate } = useDeleteSerie(page);
   
     return (
       <li>

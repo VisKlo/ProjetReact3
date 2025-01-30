@@ -7,6 +7,8 @@ import { Header } from '@organisms/Header'
 import { Films } from '@pages/Films'
 import { Series } from '@pages/Series'
 import { Favorites } from '@pages/Favorites'
+import { FilmDetail } from '@pages/FilmDetail'
+import { SerieDetail } from '@pages/SerieDetail'
 
 const queryClient = new QueryClient();
 
@@ -18,9 +20,9 @@ createRoot(document.getElementById('root')!).render(
             <Routes>
               <Route path="/" Component={HomePage} />
               <Route path="/films" Component={Films} />
-              <Route path="/film/:movieId" Component={HomePage} />
+              <Route path="/film/:movieId" Component={FilmDetail} />
               <Route path="/series" Component={Series} />
-              <Route path="/serie/:serieId" Component={HomePage} />
+              <Route path="/serie/:serieId" Component={SerieDetail} />
               <Route path="/favorites" Component={Favorites} />
               </Routes>
         </BrowserRouter>

@@ -13,6 +13,11 @@ export function Films() {
 
   const moviesToDisplay = query ? searchResults : defaultMovies;
 
+  const handleRefresh = () => {
+    setPage(1);
+    refetch();
+  };
+
   useEffect(() => {
     if (query === "") {
       refetch();
@@ -35,10 +40,11 @@ export function Films() {
     <div>
       <h2>Listes de films</h2>
       <SearchBar onSearch={handleSearch} />
-      <Button label="Rafraichir" className="refreshbutton" onClick={() => {setQuery(""); refetch()}} />
+      <h3>Page {page}</h3>
+      <Button label="Rafraichir" className="refreshbutton" onClick={() => {setQuery(""); handleRefresh()}} />
       <ul>
         {moviesToDisplay?.map((movie: any) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCard key={movie.id} movie={movie} page={page} />
         ))}
       </ul>
       <Button label="Précédent" className="pagebutton" onClick={() => setPage(page - 1)} disabled={page === 1} />

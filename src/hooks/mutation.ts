@@ -1,24 +1,24 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteMovie, deleteSerie } from "@api/MovieDbApi";
 
-export function useDeleteMovie() {
+export function useDeleteMovie(page: number) {
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: deleteMovie,
         onSettled: () => {
-            queryClient.invalidateQueries({ queryKey: ["movies"] })
+            queryClient.invalidateQueries({ queryKey: ["movies", page] })
         }
     })
 }
 
-export function useDeleteSerie() {
+export function useDeleteSerie(page: number) {
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: deleteSerie,
         onSettled: () => {
-            queryClient.invalidateQueries({ queryKey: ["series"] })
+            queryClient.invalidateQueries({ queryKey: ["series", page] })
         }
     })
 }
