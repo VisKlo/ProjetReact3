@@ -43,7 +43,7 @@ export function Series() {
     <main>
       <h2>Listes de séries</h2>
       <SearchBar onSearch={handleSearch} />
-      <h3>Page {page}</h3>
+      <h3 className="page-info">Page {page}</h3>
       <Button label="Rafraichir" className="refresh-button" onClick={() => { setQuery(""); handleRefresh() }} />
       <ul className="dflex liste">
         {seriesToDisplay?.map((serie: any) => (

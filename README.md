@@ -1,50 +1,66 @@
-# React + TypeScript + Vite
+# 🎬 Projet Films & Séries - TMDb
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet est une application web permettant d'afficher une liste de films et de séries en utilisant l'API de **TheMovieDB (TMDb)**. Il permet également d'ajouter des films et séries en favoris et de rechercher des contenus.
 
-Currently, two official plugins are available:
+## Fonctionnalités
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Affichage des films et séries** : Liste paginée des films et séries populaires.
+- **Détails des films et séries** : Accès à la page de détails d'un film ou d'une série.
+- **Ajout en favoris** : Sauvegarde des films et séries favoris.
+- **Recherche avancée** : Possibilité de rechercher un film ou une série.
+- **Suppression des favoris** : Option pour retirer un film ou une série de la liste des favoris.
 
-## Expanding the ESLint configuration
+## 🛠 Technologies utilisées
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React** (avec TypeScript) - Framework front-end
+- **React Router** - Navigation entre les pages
+- **Zustand** - Gestion des favoris via un store global
+- **TanStack Query** - Gestion des requêtes API et du cache
+- **TheMovieDB API** - Source des films et séries
 
-- Configure the top-level `parserOptions` property like this:
+## Prérequis
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **npm** ou **yarn** installé
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Installation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. **Cloner le dépôt** :
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```sh
+   git clone https://github.com/votre-utilisateur/votre-repo.git
+   cd votre-repo
+   ```
+
+2. **Installer les dépendances** :
+
+   ```sh
+   npm install
+   ```
+
+   ou
+
+   ```sh
+   yarn install
+   ```
+
+3. \*\*Créer un fichier \*\***`.env`** à la racine et ajouter votre clé API TMDb :
+
+   ```env
+   REACT_APP_TMDB_API_KEY=your_api_key_here
+   ```
+
+4. **Lancer l'application en mode développement** :
+
+   ```sh
+   npm run dev
+   ```
+
+   ou
+
+   ```sh
+   yarn dev
+   ```
+
+## 🔗 API TheMovieDB
+
+L'application interagit avec l'API TMDb pour récupérer les films et séries. Référence : [https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
