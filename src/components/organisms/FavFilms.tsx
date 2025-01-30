@@ -6,22 +6,22 @@ export function FavFilms() {
     const { favoritesFilm, removeFavFilm } = useFavoritesFilmsStore();
 
     return (
-        <section>
+        <section className="favorites">
             <h2>Mes films favoris</h2>
-            { favoritesFilm.length === 0 ? (
-                <p>Aucun favori</p>
+            {favoritesFilm.length === 0 ? (
+                <p className="no-favorites">Aucun favori</p>
             ) : (
-                <ul>
-                    { favoritesFilm.map((film: any) => (
-                        <li key={film.id}>
-                            <Link to={`/film/${film.id}`}>
-                                { film.title }
-                             </Link>
-                            <Button label="Retirer" className="favbutton" onClick={() => removeFavFilm(film.id)}/>
+                <ul className="fav-list">
+                    {favoritesFilm.map((film: any) => (
+                        <li key={film.id} className="fav-item">
+                            <Link to={`/film/${film.id}`} className="fav-link">
+                                {film.title}
+                            </Link>
+                            <Button label="Retirer" className="remove-fav-btn" onClick={() => removeFavFilm(film.id)} />
                         </li>
                     ))}
                 </ul>
             )}
         </section>
-    )
+    );
 }

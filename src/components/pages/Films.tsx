@@ -21,7 +21,7 @@ export function Films() {
   useEffect(() => {
     if (query === "") {
       refetch();
-    } 
+    }
   }, [query, refetch]);
 
   const handleSearch = (searchQuery: string) => {
@@ -38,17 +38,23 @@ export function Films() {
 
   return (
     <div>
-      <h2>Listes de films</h2>
+      <h2>Liste des films</h2>
       <SearchBar onSearch={handleSearch} />
-      <h3>Page {page}</h3>
-      <Button label="Rafraichir" className="refreshbutton" onClick={() => {setQuery(""); handleRefresh()}} />
-      <ul>
+      <h3 className="page-info">Page {page}</h3>
+      <Button
+        label="Rafraîchir"
+        className="refresh-button"
+        onClick={() => { setQuery(""); handleRefresh() }}
+      />
+      <ul className="dflex liste">
         {moviesToDisplay?.map((movie: any) => (
           <MovieCard key={movie.id} movie={movie} page={page} />
         ))}
       </ul>
-      <Button label="Précédent" className="pagebutton" onClick={() => setPage(page - 1)} disabled={page === 1} />
-      <Button label="Suivant" className="pagebutton" onClick={() => setPage(page + 1)} />
+      <div className="pagination">
+        <Button label="Précédent" onClick={() => setPage(page - 1)} disabled={page === 1} />
+        <Button label="Suivant" onClick={() => setPage(page + 1)} />
+      </div>
     </div>
   );
 }

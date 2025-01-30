@@ -14,11 +14,11 @@ export function FilmDetail() {
     }
 
     return (
-        <main>
-            <h2>{data?.title}</h2>
-            <img src={`https://image.tmdb.org/t/p/w300${data?.poster_path}`} alt={data?.title} />
-            <p>{data?.overview}</p>
-            <p>Date de sortie: {data?.release_date}</p>
+        <main className="descr">
+            <h2 className="movie-title">{data?.title}</h2>
+            <img src={`https://image.tmdb.org/t/p/w300${data?.poster_path}`} alt={data?.title} className="movie-poster" />
+            <p className="movie-overview">{data?.overview}</p>
+            <p className="release-date">Date de sortie: {data?.release_date}</p>
         </main>
     );
 }

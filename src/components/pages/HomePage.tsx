@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { Button } from "@atoms/Button"
 
 export function HomePage() {
     return (
@@ -10,9 +9,9 @@ export function HomePage() {
             <div className="cta">
                 <h2>Commencez maintenant</h2>
                 <div className="links">
-                    <Link to="/films"><Button label="Voir les Films" className="bouton"/></Link>
-                    <Link to="/series"><Button label="Voir les séries" className="bouton"/></Link>
-                    <Link to="/favorites"><Button label="Voir les favoris" className="bouton"/></Link>
+                    <Link to="/films" className="cta-button">Voir les Films</Link>
+                    <Link to="/series" className="cta-button">Voir les Séries</Link>
+                    <Link to="/favorites" className="cta-button">Voir les Favoris</Link>
                 </div>
             </div>
         </div>

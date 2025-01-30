@@ -9,6 +9,8 @@ import { Series } from '@pages/Series'
 import { Favorites } from '@pages/Favorites'
 import { FilmDetail } from '@pages/FilmDetail'
 import { SerieDetail } from '@pages/SerieDetail'
+import "./reset.css"
+import "./style.css"
 
 const queryClient = new QueryClient();
 

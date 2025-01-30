@@ -14,11 +14,11 @@ export function SerieDetail() {
     }
 
     return (
-        <main>
-            <h2>{data?.name}</h2>
-            <img src={`https://image.tmdb.org/t/p/w300${data?.poster_path}`} alt={data?.name} />
-            <p>{data?.overview}</p>
-            <p>Date de sortie: {data?.first_air_date}</p>
+        <main className="descr">
+            <h2 className="serie-title">{data?.name}</h2>
+            <img src={`https://image.tmdb.org/t/p/w300${data?.poster_path}`} alt={data?.name} className="serie-poster" />
+            <p className="serie-overview">{data?.overview}</p>
+            <p className="release-date">Date de sortie: {data?.first_air_date}</p>
         </main>
     );
 }

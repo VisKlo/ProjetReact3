@@ -6,22 +6,22 @@ export function FavSeries() {
     const { favoritesSerie, removeFavSerie } = useFavoritesSerieStore();
 
     return (
-        <section>
+        <section className="favorites">
             <h2>Mes séries favoris</h2>
             {favoritesSerie.length === 0 ? (
-                <p>Aucun favori</p>
+                <p className="no-favorites">Aucun favori</p>
             ) : (
-                <ul>
+                <ul className="fav-list">
                     {favoritesSerie.map((serie: any) => (
-                        <li key={serie.id}>
-                            <Link to={`/serie/${serie.id}`}>
+                        <li key={serie.id} className="fav-item">
+                            <Link to={`/serie/${serie.id}`} className="fav-link">
                                 {serie.name}
                             </Link>
-                            <Button label="Retirer" className="favbutton" onClick={() => removeFavSerie(serie.id)} />
+                            <Button label="Retirer" className="remove-fav-btn" onClick={() => removeFavSerie(serie.id)} />
                         </li>
                     ))}
                 </ul>
             )}
         </section>
-    )
+    );
 }
