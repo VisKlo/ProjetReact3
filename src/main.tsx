@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { HomePage } from '@pages/HomePage'
-import { Header } from '@organisms/Header/Header'
+import { Header } from '@organisms/Header'
 import { Films } from '@pages/Films'
 import { Series } from '@pages/Series'
 import { Favorites } from '@pages/Favorites'
