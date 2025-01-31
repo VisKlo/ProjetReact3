@@ -27,7 +27,7 @@ export const useFavoritesFilmsStore = create<FavFilms>((set, get) => ({
       return { favoritesFilm: updatedFavorites };
     }),
   
-    isFavFilm: (id) => get().favoritesFilm.some((fav) => fav.id === id), // verifie si un film est deja en favori
+    isFavFilm: (id) => get().favoritesFilm.some((fav) => fav.id === id),
 
     
 }));

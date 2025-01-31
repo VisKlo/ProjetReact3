@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
+        <BrowserRouter basename='/ProjetReact3/'>
           <Header />
             <Routes>
               <Route path="/" Component={HomePage} />

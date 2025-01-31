@@ -13,8 +13,8 @@ export const useFavoritesSerieStore = create<FavSerie>((set, get) => ({
   // Ajouter un Serie
   addFavSerie: (serie) =>
     set((state) => {
-      const updatedFavorites = [...state.favoritesSerie]; // stocke tout les Serie favoirs
-      if (!updatedFavorites.some((fav) => fav.id === serie.id)) { // verifie si le Serie est deja en favori
+      const updatedFavorites = [...state.favoritesSerie];
+      if (!updatedFavorites.some((fav) => fav.id === serie.id)) {
         updatedFavorites.push(serie);
       }
       return { favoritesSerie: updatedFavorites };
